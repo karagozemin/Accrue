@@ -18,6 +18,11 @@ export const metadata: Metadata = {
   description:
     "Stake mETH on Mantle, automatically convert yield into fractionalized Real World Assets. Principal stays 100% safe.",
   keywords: ["DeFi", "RWA", "Mantle", "mETH", "Real Estate", "Yield Farming"],
+  icons: {
+    icon: "/icon.png",
+    shortcut: "/favicon.png",
+    apple: "/logo.png",
+  },
 };
 
 export default function RootLayout({

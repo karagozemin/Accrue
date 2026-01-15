@@ -2,10 +2,28 @@
 
 import { motion } from "framer-motion";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
+import Image from "next/image";
 
 export function Hero() {
   return (
     <div className="min-h-[90vh] flex flex-col items-center justify-center px-6">
+      {/* Logo */}
+      <motion.div
+        initial={{ opacity: 0, scale: 0.5 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.5 }}
+        className="mb-8"
+      >
+        <Image
+          src="/logo.png"
+          alt="Accrue Logo"
+          width={120}
+          height={120}
+          className="drop-shadow-[0_0_30px_rgba(20,184,154,0.5)]"
+          priority
+        />
+      </motion.div>
+
       {/* Main Hero */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}

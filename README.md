@@ -1,17 +1,24 @@
-# 🏗️ Accrue
+# Accrue
 
-## Yield-Collateralized RWA Purchasing Protocol
+<p align="center">
+  <img src="packages/nextjs/public/logo.png" alt="Accrue Logo" width="200"/>
+</p>
 
-> **Mantle Global Hackathon 2025 - RWA/RealFi Track**
+<h3 align="center">Yield-Collateralized RWA Purchasing Protocol</h3>
 
+<p align="center">
+  <strong>Build Real Wealth From Your Yield</strong>
+</p>
 
-**Build Real Wealth From Your Yield**
+<p align="center">
+  <a href="https://mantle.xyz"><img src="https://img.shields.io/badge/Built%20on-Mantle-blue" alt="Built on Mantle"/></a>
+  <a href="https://soliditylang.org"><img src="https://img.shields.io/badge/Solidity-0.8.24-purple" alt="Solidity"/></a>
+  <a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="License: MIT"/></a>
+</p>
 
-[![Built on Mantle](https://img.shields.io/badge/Built%20on-Mantle-blue)](https://mantle.xyz)
-[![Solidity](https://img.shields.io/badge/Solidity-0.8.20-purple)](https://soliditylang.org)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-
-
+<p align="center">
+  <b>Mantle Global Hackathon 2025 - RWA/RealFi Track</b>
+</p>
 
 ---
 

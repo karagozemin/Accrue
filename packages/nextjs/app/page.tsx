@@ -2,6 +2,7 @@
 
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import { useAccount } from "wagmi";
+import Image from "next/image";
 import { Dashboard } from "@/components/Dashboard";
 import { Hero } from "@/components/Hero";
 
@@ -13,12 +14,16 @@ export default function Home() {
       {/* Navigation */}
       <nav className="fixed top-0 left-0 right-0 z-50 backdrop-blur-xl bg-dark-900/80 border-b border-dark-600/50">
         <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-brick-500 to-mantle-500 flex items-center justify-center">
-              <span className="text-xl">🏗️</span>
-            </div>
+          <div className="flex items-center gap-3">
+            <Image
+              src="/logo.png"
+              alt="Accrue Logo"
+              width={40}
+              height={40}
+              className="rounded-xl"
+            />
             <span className="text-xl font-bold">
-              Yield<span className="text-gradient">Brick</span>
+              <span className="text-white">Acc</span><span className="text-gradient">rue</span>
             </span>
           </div>
 
