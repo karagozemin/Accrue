@@ -51,7 +51,7 @@ export function Portfolio() {
             </p>
           </div>
           <div className="text-right">
-            <div className="text-3xl font-bold text-gradient">{totalValue} ETH</div>
+            <div className="text-3xl font-bold text-gradient">{totalValue} mETH</div>
             <div className="text-sm text-gray-400">Total Value</div>
           </div>
         </div>
@@ -86,7 +86,7 @@ export function Portfolio() {
 
               {/* Value */}
               <div className="text-right">
-                <div className="font-mono text-lg">{asset.value} ETH</div>
+                <div className="font-mono text-lg">{asset.value} mETH</div>
                 <div className="text-sm text-mantle-400">
                   +{(parseFloat(asset.value) * parseFloat(asset.apy) / 100).toFixed(4)} /yr
                 </div>
@@ -122,15 +122,6 @@ export function Portfolio() {
         </div>
       )}
 
-      {/* Portfolio Actions */}
-      <div className="grid grid-cols-2 gap-4">
-        <button className="btn-secondary">
-          📊 View Details
-        </button>
-        <button className="btn-secondary">
-          📄 Export Report
-        </button>
-      </div>
     </div>
   );
 }

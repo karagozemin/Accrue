@@ -1,19 +1,9 @@
-# 🏗️ Strata
+# 🏗️ Accrue
 
 ## Yield-Collateralized RWA Purchasing Protocol
 
 > **Mantle Global Hackathon 2025 - RWA/RealFi Track**
 
-<div align="center">
-
-```
-███████╗████████╗██████╗  █████╗ ████████╗ █████╗ 
-██╔════╝╚══██╔══╝██╔══██╗██╔══██╗╚══██╔══╝██╔══██╗
-███████╗   ██║   ██████╔╝███████║   ██║   ███████║
-╚════██║   ██║   ██╔══██╗██╔══██║   ██║   ██╔══██║
-███████║   ██║   ██║  ██║██║  ██║   ██║   ██║  ██║
-╚══════╝   ╚═╝   ╚═╝  ╚═╝╚═╝  ╚═╝   ╚═╝   ╚═╝  ╚═╝
-```
 
 **Build Real Wealth From Your Yield**
 
@@ -21,7 +11,7 @@
 [![Solidity](https://img.shields.io/badge/Solidity-0.8.20-purple)](https://soliditylang.org)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-</div>
+
 
 ---
 
@@ -31,7 +21,7 @@
 
 ## 💡 The Solution
 
-**Strata** automatically converts your staking yield into fractionalized Real World Assets.
+**Accrue** automatically converts your staking yield into fractionalized Real World Assets.
 
 - **Stake mETH** on Mantle Network
 - **Your principal stays 100% safe**
@@ -44,7 +34,7 @@
 
 ```
 ┌─────────────────────────────────────────────────────────────────────────────┐
-│                          Strata Protocol                                 │
+│                          Accrue Protocol                                 │
 ├─────────────────────────────────────────────────────────────────────────────┤
 │                                                                              │
 │   ┌────────────────┐                         ┌────────────────────────────┐ │
@@ -76,7 +66,7 @@
 
 ## 🌐 Mantle Ecosystem Alignment
 
-Strata is **built specifically for Mantle Network**:
+Accrue is **built specifically for Mantle Network**:
 
 | Feature | Mantle Advantage |
 |---------|------------------|
@@ -90,7 +80,7 @@ Strata is **built specifically for Mantle Network**:
 ## 📦 Project Structure
 
 ```
-Strata/
+Accrue/
 ├── packages/
 │   ├── foundry/                    # Smart Contracts
 │   │   ├── contracts/
@@ -169,8 +159,8 @@ Fractionalized RWA tokens representing:
 ### 1. Clone & Install
 
 ```bash
-git clone https://github.com/your-username/Strata
-cd Strata/packages/foundry
+git clone https://github.com/your-username/Accrue
+cd Accrue/packages/foundry
 
 # Install dependencies
 make install
@@ -211,7 +201,7 @@ make deploy-testnet
 **Deploy:**
 
 ```bash
-forge script script/Deploy.s.sol:DeployStrata \
+forge script script/Deploy.s.sol:DeployAccrue \
   --rpc-url https://rpc.sepolia.mantle.xyz \
   --broadcast \
   --verify \
@@ -301,8 +291,8 @@ MIT License - See [LICENSE](LICENSE) for details
 
 <div align="center">
 
-**🏗️ Strata - Build Real Wealth From Your Yield**
+**🏗️ Accrue - Build Real Wealth From Your Yield**
 
-[Demo](https://Strata.xyz) · [Docs](https://docs.Strata.xyz) · [Twitter](https://twitter.com/Strata)
+[Demo](https://Accrue.xyz) · [Docs](https://docs.Accrue.xyz) · [Twitter](https://twitter.com/Accrue)
 
 </div>

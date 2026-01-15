@@ -1,5 +1,5 @@
 // =============================================================================
-// Contract ABIs - Strata
+// Contract ABIs - Accrue
 // Generated from Solidity contracts for frontend integration
 // =============================================================================
 
@@ -194,6 +194,20 @@ export const MOCK_METH_ABI = [
     stateMutability: "nonpayable",
     inputs: [{ name: "amount", type: "uint256" }],
     outputs: [],
+  },
+  {
+    name: "lastFaucetTime",
+    type: "function",
+    stateMutability: "view",
+    inputs: [{ name: "user", type: "address" }],
+    outputs: [{ name: "", type: "uint256" }],
+  },
+  {
+    name: "FAUCET_COOLDOWN",
+    type: "function",
+    stateMutability: "view",
+    inputs: [],
+    outputs: [{ name: "", type: "uint256" }],
   },
   {
     name: "approve",

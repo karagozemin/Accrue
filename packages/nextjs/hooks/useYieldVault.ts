@@ -1,6 +1,6 @@
 // =============================================================================
 // useYieldVault.ts - Custom Hook for YieldVault Contract Interactions
-// Strata - Mantle Global Hackathon 2025
+// Accrue - Mantle Global Hackathon 2025
 // =============================================================================
 
 import { useAccount, useChainId, useReadContract, useWriteContract, useWaitForTransactionReceipt } from "wagmi";
@@ -278,6 +278,25 @@ export function useMETH() {
     },
   });
 
+  // Get last faucet time for cooldown calculation
+  const { data: lastFaucetTime, refetch: refetchFaucetTime } = useReadContract({
+    address: contracts.mETH,
+    abi: MOCK_METH_ABI,
+    functionName: "lastFaucetTime",
+    args: address ? [address] : undefined,
+    query: {
+      enabled: !!address,
+    },
+  });
+
+  // Calculate cooldown remaining (1 hour = 3600 seconds)
+  const FAUCET_COOLDOWN = 3600;
+  const now = Math.floor(Date.now() / 1000);
+  const lastTime = lastFaucetTime ? Number(lastFaucetTime) : 0;
+  const cooldownEnd = lastTime + FAUCET_COOLDOWN;
+  const cooldownRemaining = Math.max(0, cooldownEnd - now);
+  const canUseFaucet = cooldownRemaining === 0;
+
   const { writeContract, data: txHash, isPending } = useWriteContract();
   const { isLoading: isConfirming, isSuccess: isConfirmed } = useWaitForTransactionReceipt({
     hash: txHash,
@@ -303,17 +322,32 @@ export function useMETH() {
     });
   };
 
+  const faucet = async (amount: string = "10") => {
+    const amountWei = parseEther(amount);
+    
+    writeContract({
+      address: contracts.mETH,
+      abi: MOCK_METH_ABI,
+      functionName: "faucet",
+      args: [amountWei],
+    });
+  };
+
   return {
     balance: balance ? formatEther(balance as bigint) : "0",
     allowance: allowance ? formatEther(allowance as bigint) : "0",
     approve,
     approveMax,
+    faucet,
+    canUseFaucet,
+    cooldownRemaining,
     isPending,
     isConfirming,
     isConfirmed,
     refetch: () => {
       refetchBalance();
       refetchAllowance();
+      refetchFaucetTime();
     },
   };
 }

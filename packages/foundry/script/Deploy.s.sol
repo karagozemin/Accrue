@@ -2,7 +2,7 @@
 pragma solidity ^0.8.20;
 
 // =============================================================================
-// Deploy.s.sol - Strata Deployment Script for Mantle Network
+// Deploy.s.sol - Accrue Deployment Script for Mantle Network
 // Mantle Global Hackathon 2025
 // =============================================================================
 //
@@ -22,7 +22,7 @@ import "../contracts/RealWorldAsset.sol";
 import "../contracts/YieldVault.sol";
 import "../contracts/mocks/MockMETH.sol";
 
-contract DeployStrata is Script {
+contract DeployAccrue is Script {
     // Deployed contract addresses (set after deployment)
     MockMETH public mockMETH;
     RealWorldAsset public rwaToken;
@@ -34,7 +34,7 @@ contract DeployStrata is Script {
         address deployer = vm.addr(deployerPrivateKey);
 
         console.log("==============================================");
-        console.log("Strata Deployment - Mantle Network");
+        console.log("Accrue Deployment - Mantle Network");
         console.log("==============================================");
         console.log("Deployer:", deployer);
         console.log("Chain ID:", block.chainid);
@@ -53,7 +53,7 @@ contract DeployStrata is Script {
         // Step 2: Deploy RealWorldAsset (ERC-1155)
         // =====================================================================
         console.log("2. Deploying RealWorldAsset...");
-        string memory baseURI = "https://api.Strata.xyz/metadata/";
+        string memory baseURI = "https://api.Accrue.xyz/metadata/";
         rwaToken = new RealWorldAsset(baseURI);
         console.log("   RealWorldAsset deployed at:", address(rwaToken));
 
@@ -64,7 +64,7 @@ contract DeployStrata is Script {
         yieldVault = new YieldVault(
             IERC20(address(mockMETH)),
             rwaToken,
-            "Strata mETH Vault",
+            "Accrue mETH Vault",
             "ybMETH"
         );
         console.log("   YieldVault deployed at:", address(yieldVault));
@@ -141,7 +141,7 @@ contract DeployRWA is Script {
         uint256 deployerPrivateKey = vm.envUint("PRIVATE_KEY");
         vm.startBroadcast(deployerPrivateKey);
 
-        RealWorldAsset rwa = new RealWorldAsset("https://api.Strata.xyz/metadata/");
+        RealWorldAsset rwa = new RealWorldAsset("https://api.Accrue.xyz/metadata/");
 
         vm.stopBroadcast();
         console.log("RealWorldAsset deployed at:", address(rwa));

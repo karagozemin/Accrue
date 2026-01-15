@@ -2,7 +2,8 @@
 
 import { motion } from "framer-motion";
 import { useState } from "react";
-import { useAllAssets, useRWAToken, type RWAAsset } from "../hooks";
+import toast from "react-hot-toast";
+import { useAllAssets, useRWAToken, useYieldVault, type RWAAsset } from "../hooks";
 
 // Asset icons/emojis for visual representation
 const ASSET_ICONS: Record<number, string> = {
@@ -62,7 +63,7 @@ function AssetCard({ asset, isSelected, onSelect, userBalance = 0 }: AssetCardPr
       <div className="grid grid-cols-2 gap-4 mb-4">
         <div>
           <span className="text-xs text-gray-500 block">Price/Fraction</span>
-          <span className="text-lg font-bold text-white">{asset.pricePerFraction} ETH</span>
+          <span className="text-lg font-bold text-white">{asset.pricePerFraction} mETH</span>
         </div>
         <div>
           <span className="text-xs text-gray-500 block">Expected APY</span>
@@ -80,7 +81,7 @@ function AssetCard({ asset, isSelected, onSelect, userBalance = 0 }: AssetCardPr
           <div className="flex justify-between items-center mt-1">
             <span className="text-sm text-gray-400">Value</span>
             <span className="font-medium text-white">
-              {(userBalance * parseFloat(asset.pricePerFraction)).toFixed(4)} ETH
+              {(userBalance * parseFloat(asset.pricePerFraction)).toFixed(4)} mETH
             </span>
           </div>
         </div>
@@ -104,12 +105,27 @@ function AssetCard({ asset, isSelected, onSelect, userBalance = 0 }: AssetCardPr
 export function RWAMarketplace() {
   const { assets, isLoading: assetsLoading } = useAllAssets();
   const { portfolio, totalPortfolioValue, isLoading: portfolioLoading } = useRWAToken();
+  const { setTargetAsset, isWritePending, isConfirming, dashboard } = useYieldVault();
   const [selectedAsset, setSelectedAsset] = useState<number | null>(null);
 
   // Get user balance for each asset
   const getAssetBalance = (assetId: number): number => {
     const item = portfolio.find((p) => p.assetId === assetId);
     return item?.balance || 0;
+  };
+
+  const handleSetTarget = async () => {
+    if (!selectedAsset) return;
+    try {
+      toast.loading("Setting target asset...", { id: "setTarget" });
+      await setTargetAsset(selectedAsset);
+      toast.dismiss("setTarget");
+      toast.success(`Target set to ${selectedAssetData?.name}!`);
+    } catch (error) {
+      toast.dismiss("setTarget");
+      toast.error("Failed to set target asset");
+      console.error(error);
+    }
   };
 
   const selectedAssetData = assets.find((a) => a.id === selectedAsset);
@@ -132,7 +148,7 @@ export function RWAMarketplace() {
         </div>
         <div className="text-right">
           <span className="text-sm text-gray-400 block">Your Portfolio Value</span>
-          <span className="text-xl font-bold text-gradient">{totalPortfolioValue} ETH</span>
+          <span className="text-xl font-bold text-gradient">{totalPortfolioValue} mETH</span>
         </div>
       </div>
 
@@ -170,11 +186,11 @@ export function RWAMarketplace() {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
             <div className="bg-dark-700/50 rounded-xl p-4">
               <span className="text-xs text-gray-500 block mb-1">Price/Fraction</span>
-              <span className="text-lg font-bold">{selectedAssetData.pricePerFraction} ETH</span>
+              <span className="text-lg font-bold">{selectedAssetData.pricePerFraction} mETH</span>
             </div>
             <div className="bg-dark-700/50 rounded-xl p-4">
               <span className="text-xs text-gray-500 block mb-1">Total Value</span>
-              <span className="text-lg font-bold">{selectedAssetData.totalValue} ETH</span>
+              <span className="text-lg font-bold">{selectedAssetData.totalValue} mETH</span>
             </div>
             <div className="bg-dark-700/50 rounded-xl p-4">
               <span className="text-xs text-gray-500 block mb-1">Total Fractions</span>
@@ -198,9 +214,21 @@ export function RWAMarketplace() {
           </div>
 
           {/* Action Button */}
-          <button className="btn-primary w-full">
-            Set as Target Asset for Yield Purchases
+          <button 
+            className="btn-primary w-full disabled:opacity-50"
+            onClick={handleSetTarget}
+            disabled={isWritePending || isConfirming || !dashboard || parseFloat(dashboard.principal) === 0}
+          >
+            {isWritePending || isConfirming 
+              ? "Processing..." 
+              : !dashboard || parseFloat(dashboard.principal) === 0
+                ? "Deposit mETH first to set target"
+                : `Set ${selectedAssetData.name} as Target`
+            }
           </button>
+          {dashboard && selectedAsset === dashboard.targetAssetId && (
+            <p className="text-mantle-400 text-sm text-center mt-2">✓ This is your current target</p>
+          )}
         </motion.div>
       )}
 

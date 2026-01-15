@@ -25,7 +25,7 @@ contract RealWorldAssetTest is Test {
 
     function setUp() public {
         vm.startPrank(deployer);
-        rwaToken = new RealWorldAsset("https://api.strata.xyz/metadata/");
+        rwaToken = new RealWorldAsset("https://api.Accrue.xyz/metadata/");
         
         // Set vault as minter
         rwaToken.setVaultAsMinter(vault);
@@ -315,10 +315,10 @@ contract RealWorldAssetTest is Test {
 
     function test_TokenURI() public view {
         string memory uri1 = rwaToken.uri(NYC_REALESTATE);
-        assertEq(uri1, "https://api.strata.xyz/metadata/1.json", "URI should match");
+        assertEq(uri1, "https://api.Accrue.xyz/metadata/1.json", "URI should match");
         
         string memory uri2 = rwaToken.uri(TREASURY_BOND);
-        assertEq(uri2, "https://api.strata.xyz/metadata/2.json", "URI should match");
+        assertEq(uri2, "https://api.Accrue.xyz/metadata/2.json", "URI should match");
     }
 
     // =========================================================================

@@ -39,12 +39,12 @@ export function YieldProgress({ currentYield, targetAsset, progressPercent }: Yi
         </div>
         <div>
           <div className="text-sm text-gray-400">Fraction Price</div>
-          <div className="font-mono">0.01 ETH</div>
+          <div className="font-mono">0.01 mETH</div>
         </div>
         <div>
           <div className="text-sm text-gray-400">Remaining</div>
           <div className="font-mono text-brick-400">
-            {(0.01 - parseFloat(currentYield)).toFixed(4)} ETH
+            {(0.01 - parseFloat(currentYield)).toFixed(4)} mETH
           </div>
         </div>
       </div>

@@ -1,6 +1,6 @@
 // =============================================================================
 // useRWAToken.ts - Custom Hook for RealWorldAsset Contract Interactions
-// Strata - Mantle Global Hackathon 2025
+// Accrue - Mantle Global Hackathon 2025
 // =============================================================================
 
 import { useAccount, useChainId, useReadContract } from "wagmi";
